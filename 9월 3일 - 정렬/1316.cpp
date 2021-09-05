@@ -17,7 +17,7 @@ bool check(string str) {
 	return true;
 }
 
-int main() {
+int main(){
 	int n, cnt = 0;
 	string str;
 

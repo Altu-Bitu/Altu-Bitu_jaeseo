@@ -2,7 +2,7 @@
 #include<vector>
 using namespace std;
 
-int main() {
+int main(){
 	int n, viewer, viewerSub;
 	long long cnt = 0;
 

@@ -7,7 +7,7 @@ struct score
 {
 	int docu, inter;
 };
-int main() {
+int main(){
 	int t;
 	cin >> t;
 

@@ -21,7 +21,7 @@ bool cmp(const string i1, const string i2) {
 	return i1 < i2;
 }
 
-int main() {
+int main(){
 	int n;
 	cin >> n;
 
