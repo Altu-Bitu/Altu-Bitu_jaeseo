@@ -8,7 +8,7 @@ int sum(string str) {
 	int s = 0;
 
 	for (int i = 0; i < str.length(); i++)
-		if (str[i] >= '1' && str[i] <= '9') s += str[i]-'0';
+		if (str[i] >= '1' && str[i] <= '9') s += str[i] - '0';
 
 	return s;
 }
