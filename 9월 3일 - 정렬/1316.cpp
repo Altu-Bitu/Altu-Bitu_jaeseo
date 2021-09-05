@@ -1,18 +1,16 @@
-#include<iostream>
+﻿#include<iostream>
 using namespace std;
 
 bool check(string str) {
 	bool al[26] = { false };
 
 	for (int i = 0; i < str.length(); i++) {
-		if (!al[str[i] - 'a']) {
-			al[str[i] - 'a'] = true;
-			char tmp = str[i];
-
-			while (tmp == str[++i]);
-			i--;
+		if (i && str[i] == str[i - 1]) continue; //전 문자와 같을 경우 continue
+		else {
+			if (!al[str[i] - 'a'])
+				al[str[i] - 'a'] = true;
+			else return false;
 		}
-		else return false;
 	}
 	return true;
 }
