@@ -11,7 +11,7 @@ int main() {
 	int t;
 	cin >> t;
 
-	while (t--)
+	while(t--)
 	{
 		int n, tmp, result = 1;//서류면접 1등
 		cin >> n;
