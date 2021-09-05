@@ -1,14 +1,14 @@
 #include<iostream>
 #include<vector>
 #include<algorithm>
-#include <string>
+#include<cctype>
 using namespace std;
 
 int sum(string str) {
 	int s = 0;
 
 	for (int i = 0; i < str.length(); i++)
-		if (str[i] >= '1' && str[i] <= '9') s += str[i] - '0';
+		if (isdigit(str[i])) s += str[i] - '0';
 
 	return s;
 }

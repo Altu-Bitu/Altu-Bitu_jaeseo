@@ -22,7 +22,7 @@ int main() {
 	string str;
 
 	cin >> n;
-	for (int i = 0; i < n; i++) {
+	while(n--) {
 		cin >> str;
 
 		if (check(str)) cnt++;

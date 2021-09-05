@@ -13,12 +13,13 @@ int main() {
 
 	for (int i = 0; i < test.size(); i++)
 	{
-		test[i] -= viewer;
+		int t= test[i] - viewer;
 		cnt++;
 
-		if (test[i] > 0) {
-			if (test[i] % viewerSub == 0) cnt += test[i] / viewerSub;
-			else cnt += test[i] / viewerSub + 1;
+		if (t > 0) {
+			int tVS = t / viewerSub;
+			if (t%viewerSub==0) cnt += tVS;
+			else cnt += tVS + 1;
 		}
 	}
 	cout << cnt;

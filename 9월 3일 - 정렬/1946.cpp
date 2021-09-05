@@ -1,19 +1,15 @@
-#include<iostream>
+ï»¿#include<iostream>
 #include<vector>
 #include<algorithm>
 using namespace std;
 
-struct score
-{
-	int docu, inter;
-};
 int main() {
 	int t;
 	cin >> t;
 
 	while (t--)
 	{
-		int n, tmp, result = 1;//¼­·ù¸éÁ¢ 1µî
+		int n, tmp, result = 1; //ì„œë¥˜ë©´ì ‘ 1ë“±
 		cin >> n;
 		vector<pair<int, int>> employ(n);
 
