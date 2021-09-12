@@ -14,7 +14,7 @@ int main() {
 	// 고려o
 	pair<int, int> con = make_pair(w1, i1);
 
-	bool danger1 = 0, danger2 = 0;//위험 여부
+	bool danger1 = false, danger2 = false;//위험 여부
 
 	while (day--) {
 		noncon.first += i2 - (noncon.second + a2);//체중변화
