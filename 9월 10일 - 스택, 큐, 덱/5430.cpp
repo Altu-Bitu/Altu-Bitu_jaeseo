@@ -4,7 +4,7 @@
 #include<string>
 using namespace std;
 
-void dequeAssign(deque<int>& dq, string data) {
+deque<int> dequeAssign(deque<int> dq, string data) {
 	string tmp = ""; // 십의자리수 넘어가는 숫자들 고려
 	for (int i = 0; i < data.size(); i++) {
 		if (isdigit(data[i])) tmp += data[i];
@@ -14,9 +14,10 @@ void dequeAssign(deque<int>& dq, string data) {
 			tmp = "";
 		}
 	}
+	return dq;
 }
 
-void operation(deque<int>& dq, string fun, bool& funR, bool& error) {
+deque<int> operation(deque<int> dq, string fun, bool& funR, bool& error) {
 	for (int i = 0; i < fun.size(); i++)
 	{
 		if (fun[i] == 'R') funR = !funR; // R 나오면 지금 상태의 역순으로
@@ -29,6 +30,7 @@ void operation(deque<int>& dq, string fun, bool& funR, bool& error) {
 			funR ? dq.pop_back() : dq.pop_front(); // 역순으로 : 원래대로
 		}
 	}
+	return dq;
 }
 
 int main() {
@@ -43,10 +45,10 @@ int main() {
 		cin >> fun >> n >> data;
 
 		//data의 수들을 덱에 대입
-		dequeAssign(dq, data);
+		dq = dequeAssign(dq, data);
 
-		//명령어 처리
-		operation(dq, fun, funR, error);
+		//명령어 처리 된 덱
+		dq = operation(dq, fun, funR, error);
 
 		//출력
 		if (error) {
@@ -71,5 +73,6 @@ int main() {
 			cout << dq.front();
 		}
 		cout << "]\n";
+
 	}
 }

@@ -4,6 +4,16 @@ using namespace std;
 const int SIZE = 26;
 int alph[SIZE];
 
+double operation(char c, double n1, double n2) {
+	switch (c)
+	{
+	case '+': return n2 + n1;
+	case '-': return n2 - n1;
+	case '*': return n2 * n1;
+	case '/': return n2 / n1;
+	}
+}
+
 int main() {
 	int n;
 	string str;
@@ -28,13 +38,8 @@ int main() {
 		double num2 = s.top();
 		s.pop();
 
-		switch (str[i])
-		{
-		case '+': s.push(num2 + num1); break;
-		case '-': s.push(num2 - num1); break;
-		case '*': s.push(num2 * num1); break;
-		case '/': s.push(num2 / num1);
-		}
+		//계산
+		s.push(operation(str[i], num1, num2));
 	}
 
 	cout << fixed;
