@@ -1,20 +1,33 @@
 ﻿#include<iostream>
 #include<queue>
 using namespace std;
+
+struct cmp {
+	bool operator()(int num1, int num2) {
+		if (abs(num1) == abs(num2)) return num1 > num2;
+		return abs(num1) > abs(num2); //우선순위 큐의 오름차순은 스택의 오름차순과 반대!!!
+	}
+};
+
 int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(NULL);
+
 	int n, x;
+
+	priority_queue<int, vector<int>, cmp> pq; //오름차순 정렬
+
 	cin >> n;
-
-	priority_queue<pair<int, int>, vector<pair<int, int>>, greater<>> pq; //pair로 절댓값, 원래 값 저장, 오름차순 정렬
-
 	while (n--)
 	{
 		cin >> x;
-		if (x) pq.push(make_pair(abs(x), x));
-		else if (!pq.empty()) {
-			cout << pq.top().second << '\n';
-			pq.pop();
+		if (x) pq.push(x); // 0 아니면 집어넣기
+		else {
+			if (!pq.empty()) {
+				cout << pq.top() << '\n';
+				pq.pop();
+			}
+			else cout << 0 << '\n';
 		}
-		else cout << 0 << '\n';
 	}
 }
