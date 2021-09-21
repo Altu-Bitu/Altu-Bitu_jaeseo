@@ -1,15 +1,14 @@
 ﻿#include<iostream>
 #include<stack>
+#include<cctype>
 using namespace std;
 
-bool check(char c1, char c2) {
-	//-,+면 '(' 나올 때까지만 pop하면 되니까 true
-	if (c1 == '-' || c1 == '+') return true;
-
-	//*,/ 는 다음 *,/ 오면 또 pop해야 되니까 true
-	if ((c1 == '*' || c1 == '/') && (c2 == '*' || c2 == '/')) return true;
-
-	else return false;
+int check(char c) {
+	switch (c) {
+	case '*': case '/': return 1; // 우선순위 가장 높음
+	case '+': case '-': return 2; // 우선순위 낮음
+	case '(': case ')': return 3; // 우선순위 없음
+	}
 }
 
 int main() {
@@ -20,7 +19,7 @@ int main() {
 	for (int i = 0; i < str.length(); i++)
 	{
 		//문자 먼저 출력
-		if (str[i] >= 'A' && str[i] <= 'Z') {
+		if (isupper(str[i])) {
 			cout << str[i];
 			continue;
 		}
@@ -29,14 +28,14 @@ int main() {
 		{
 		case '(': s.push(str[i]); break;
 		case ')':
-			while (s.top() != '(') {
+			while (!s.empty() && s.top() != '(') { //스택의 top값이 '('일 때까지 pop
 				cout << s.top();
 				s.pop();
 			}
 			s.pop(); //'(' 팝
 			break;
 		default:
-			while (!s.empty() && check(str[i], s.top()) && s.top() != '(') {
+			while (!s.empty() && check(s.top()) <= check(str[i])) { //현재 우선순위와 같거나 더 높다면 pop
 				cout << s.top();
 				s.pop();
 			}
