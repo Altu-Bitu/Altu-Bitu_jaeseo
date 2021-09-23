@@ -1,5 +1,6 @@
 ﻿#include<iostream>
 #include<vector>
+#include<cmath>
 using namespace std;
 
 const int SIZE = 1000000;
@@ -7,9 +8,9 @@ const int SIZE = 1000000;
 vector<bool> isPrime() {
 	vector<bool> prime(SIZE);
 
-	for (int i = 2; i < SIZE ; i++){
+	for (int i = 2; i <= sqrt(SIZE); i++) {
 		if (!prime[i])
-			for (int j = i + i; j < SIZE; j += i)
+			for (int j = i * i; j <= SIZE; j += i)
 				prime[j] = true;
 	}
 	return prime;
@@ -28,10 +29,10 @@ int main() {
 		cin >> n;
 		if (n == 0) break;
 
-		for (int i = 2; i <= n; i++) //b-a가 가장 큰 것을 출력하기 위해 2부터 시작
+		for (int i = 3; i <= n / 2; i++) //b-a가 가장 큰 것을 출력하기 위해 3(홀수)부터 시작
 		{
-			if (!prime[i] && !prime[n-i]) {
-				cout << n << " = " << i << " + " << n-i << "\n";
+			if (!prime[i] && !prime[n - i]) {
+				cout << n << " = " << i << " + " << n - i << "\n";
 				check = true;
 				break;
 			}

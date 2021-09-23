@@ -21,6 +21,7 @@ int main() {
 		if (c % i == 0 && gcd(i, c / i) == 1) { //서로소일 때
 			A = i;
 			B = c / i;
+			if (A - B > 0) break; // 차가 양수가 됐을 때 합이 최소가 되니까 break
 		}
 
 	cout << A * a << ' ' << B * a;
