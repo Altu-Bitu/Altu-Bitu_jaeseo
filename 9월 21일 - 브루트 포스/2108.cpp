@@ -32,7 +32,7 @@ int main() {
 	}
 	sort(num.begin(),num.end());
 
-	cout << floor(sum / n+0.5)<<'\n'; //floor로 반올림
+	cout << round(sum / n)<<'\n'; //round로 반올림
 	cout << num[n / 2] << '\n'; //중앙값
 	cout<< count(cnt,max)<<'\n'; //최빈값
 	cout << abs(num[n-1]-num[0]); //범위
