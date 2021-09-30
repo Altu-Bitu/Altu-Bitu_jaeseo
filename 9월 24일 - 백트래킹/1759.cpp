@@ -3,13 +3,31 @@
 #include<algorithm>
 using namespace std;
 
+int l, c;
+string s; //암호
+
 bool is_vowel(char c) {
 	switch (c)
 	case 'a': case 'e': case 'i': case'o': case'u': return true;
 	return false;
 }
+bool checkSecret(vector<bool> &check, vector<char> &alph) {
+	s = ""; //암호
+	int vo = 0, co = 0;//모음과 자음 개수
+
+	for (int i = 0; i < c; i++)
+		if (check[i]) {
+			if (is_vowel(alph[i]))
+				vo++;
+			else
+				co++;
+			s += alph[i];
+		}
+	if (vo >= 1 && co >= 2)	//단어가 되는 조건 모음이 적어도 하나, 자음이 적어도 두 개
+		return true;
+	return false;
+}
 int main() {
-	int l, c;
 	cin >> l >> c;
 	vector<char> alph(c, 0);
 	vector<bool> check(c, false);
@@ -22,18 +40,8 @@ int main() {
 		check[i] = true;// l개 알파벳 true로 셋팅
 
 	do {
-		string s = ""; //암호
-		int vo = 0, co = 0;//모음과 자음 개수
-
-		for (int i = 0; i < c; i++)
-			if (check[i]) {
-				if (is_vowel(alph[i]))
-					vo++;
-				else
-					co++;
-				s += alph[i];
-			}
-		if (vo >= 1 && co >= 2)	//단어가 되는 조건 모음이 적어도 하나, 자음이 적어도 두 개
+		if (checkSecret(check, alph))
 			cout << s << '\n';
+
 	} while (prev_permutation(check.begin(), check.end()));
 }
