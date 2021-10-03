@@ -17,7 +17,7 @@ struct Joint {//뱀의 꺾인 부분
 int dy[4] = { 0,-1,0,1 }; //y방향으로 갔을 때
 int dx[4] = { -1,0,1,0 }; //x방향으로 갔을 때
 queue<Dir> direction;//방향전환
-int board[SIZE][SIZE];//보드 배열
+int board[SIZE][SIZE];//보드 배열(사과2, 뱀1, 아무것도0)
 
 int n, k;//보드크기n, 사과개수k
 int y, x;//행y , 열x
@@ -94,7 +94,7 @@ int main() {
 	//사과위치 입력
 	while (k--) {
 		cin >> y >> x;
-		board[y][x] = 2;//뱀이 있는 곳은 2
+		board[y][x] = 2;//사과가 있는 곳은 2
 	}
 
 	cin >> l;
