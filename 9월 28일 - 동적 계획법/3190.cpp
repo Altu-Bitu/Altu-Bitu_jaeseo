@@ -2,21 +2,21 @@
 #include<queue>
 using namespace std;
 const int SIZE = 101;
-struct Pos {//위치 정보
+struct pos {//위치 정보
 	int y, x;
 };
-struct Dir {//방향 전환 정보
+struct dir {//방향 전환 정보
 	int t;// t초가 끝난 뒤에
 	char c;//왼쪽:L 오른쪽: D 으로 90도 회전한다.
 };
-struct Joint {//뱀의 꺾인 부분
+struct joint {//뱀의 꺾인 부분
 	int y, x, d;
 };
 
 //방향 : 0 왼쪽, 1 위, 2 오른쪽, 3 아래
 int dy[4] = { 0,-1,0,1 }; //y방향으로 갔을 때
 int dx[4] = { -1,0,1,0 }; //x방향으로 갔을 때
-queue<Dir> direction;//방향전환
+queue<dir> direction;//방향전환
 int board[SIZE][SIZE];//보드 배열(사과2, 뱀1, 아무것도0)
 
 int n, k;//보드크기n, 사과개수k
@@ -39,7 +39,7 @@ int turnLeft(int d) {//왼쪽으로 회전
 	return d < 0 ? d + 4 : d;
 }
 
-void tailPos(Pos &tail, int& tail_dir) {//꼬리 이동
+void tailPos(pos &tail, int& tail_dir) {//꼬리 이동
 	board[tail.y][tail.x] = 0;
 	tail.y += dy[tail_dir];
 	tail.x += dx[tail_dir];
@@ -48,8 +48,8 @@ void tailPos(Pos &tail, int& tail_dir) {//꼬리 이동
 int resultTime() {
 	int t = 0;//결과 시간
 	int head_dir = 2, tail_dir = 2;//뱀은 처음에 오른쪽을 향한다.
-	Pos head = { 1,1 }, tail = { 1,1 };//처음에 맨위 맨좌측에 위치
-	queue<Joint> joint;//꺾인 부분 저장
+	pos head = { 1,1 }, tail = { 1,1 };//처음에 맨위 맨좌측에 위치
+	queue<joint> joint;//꺾인 부분 저장
 	board[1][1] = 1; //왼쪽 위 시작(뱀 머리 있는 곳은 1)
 
 	while (true) {

@@ -21,11 +21,7 @@ int costRGB(int n) {
 	}
 
 	//최소비용
-	int tmp = dp[n][0];
-	for (int i = 1; i < 3; i++) {
-		if (tmp > dp[n][i]) tmp = dp[n][i];
-	}
-	return tmp;
+	return 	min(dp[n][0], min(dp[n][1], dp[n][2]));//비교할 요소가 3개면 if쓰지 않고 이렇게 하는 게 효율적?!
 }
 
 int main() {

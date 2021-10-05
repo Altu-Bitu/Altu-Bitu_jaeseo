@@ -7,9 +7,9 @@ deque<int> deck[2], ground[2];//0은 도도꺼, 1은 수연꺼
 int bellWin() {
 	//그라운드가 어느 쪽도 비어있으면 안된다.
 	//그라운드에 있는 카드 더미에서 가장 위에 위치한 카드의 숫자가 5 : 도도 종침
-	if (ground[0].size() && ground[0].front() == 5 || ground[1].size() && ground[1].front() == 5) return 0;
+	if (!ground[0].empty() && ground[0].front() == 5 || ground[1].size() && ground[1].front() == 5) return 0;
 	//그라운드에 있는 카드 더미에서 가장 위에 위치한 카드의 숫자 합이 5 : 수연이 종침
-	if (ground[0].size() && ground[1].size() && ground[0].front() + ground[1].front() == 5) return 1;
+	if (!ground[0].empty() && ground[1].size() && ground[0].front() + ground[1].front() == 5) return 1;
 	return -1;
 }
 void mergeCard(int w) {
@@ -25,7 +25,7 @@ void mergeCard(int w) {
 	}
 }
 void game(int m) {
-	int turn = 0;//도도부터 시작
+	bool turn = false;//도도부터 시작
 	while (m--) {
 		//2. 그라운드에 자신이 가진 덱에서 가장 위에 위치한 카드를 내려놓는다
 		ground[turn].push_front(deck[turn].front());
@@ -41,7 +41,7 @@ void game(int m) {
 		if (w != -1)
 			mergeCard(w);
 
-		turn = 1 - turn; //상대방 차례
+		turn = !turn; //상대방 차례
 	}
 }
 int main() {

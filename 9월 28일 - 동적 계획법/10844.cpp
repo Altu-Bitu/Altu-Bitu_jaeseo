@@ -1,8 +1,8 @@
 ﻿#include<iostream>
 #include<vector>
 
-#define mod 1000000000
 using namespace std;
+const int MOD = 1000000000;//상수 대문자표기!!
 
 int num(int n) {
 	vector<vector<int>> dp(n+1, vector<int>(10,0));
@@ -25,12 +25,12 @@ int num(int n) {
 			else if (j == 9) dp[i][j] = dp[i - 1][j - 1];
 			else dp[i][j] = (dp[i - 1][j - 1]+dp[i-1][j+1]);
 
-			dp[i][j] %= mod;
+			dp[i][j] %= MOD;
 		}
 
 	int ans=0;
 	for (int i = 0; i <10; i++)
-		ans = (ans+dp[n][i])% mod;
+		ans = (ans+dp[n][i])% MOD;
 
 	return ans;
 }
