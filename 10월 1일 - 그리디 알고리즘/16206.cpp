@@ -15,20 +15,19 @@ int cutting(int& m, int cake) {
 	// 길이가 10 초과인 케이크
 	// 자를 기회가 남았다면
 	if (m > 0) {
-		int tmp = m - (cake / 10);
-		if (cake % 10 == 0) tmp++;//10 배수는 1번 덜 잘라도 됨
+		int tmp = (cake / 10);
+		if (cake % 10 == 0) tmp--;//10 배수는 1번 덜 잘라도 됨
 
 		//자르려는 케이크 길이가 횟수보다 길면
 		//남은 횟수만큼만 자르기
-		if (tmp < 0) {
+		if (m- tmp < 0) {
 			sum = m;
 			m = 0;
 		}
 		//케이크 잘라서 길이 10 만들기
 		else {
-			sum += cake / 10;
-			m -= cake / 10;
-			if (cake % 10 == 0) m++;//10 배수는 1번 덜 잘라도 됨
+			sum += cake/10;
+			m -= tmp;
 		}
 	}
 	return sum;
