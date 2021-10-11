@@ -32,7 +32,7 @@ void game(int n) {
 
 	for (int i = 1; i <= n; i++) {// n 이닝 진행
 		int out = 0;//아웃카운트 out
-		bool next_inning = false;//다음 이닝으로 넘어가는 지 확인
+		//bool next_inning = false;//다음 이닝으로 넘어가는 지 확인
 
 		bool base[5] = { false };
 		//base[1]: 1루, base[2]: 2루, base[3]: 3루에 선수가 서 있는 지 확인
@@ -40,25 +40,19 @@ void game(int n) {
 		//base[i]==true : 선수가 서 있음, base[i]==false : 선수가 안 서 있음
 
 		while (true) {
-			for (int j = start_player; j < MAX_PLAYER; j++) {
-				int player = inning[i][batter[j]];//타자 출전.
+			int player = inning[i][batter[start_player]];//타자 출전.
 
-				//타자 볼 치는 중
-				score = play(player, out, base, score);
+			//타자 볼 치는 중
+			score = play(player, out, base, score);
 
-				if (out == 3) {// 3 아웃되면 다음 이닝
-					start_player = (j + 1) % MAX_PLAYER;//다음 이닝에 시작할 선수
-					if (start_player == 0) start_player = 1;
+			start_player = (start_player + 1) % MAX_PLAYER;//다음에 출전할 선수
+			if (start_player == 0) start_player = 1;
 
-					next_inning = true;
-					break;
-				}
-			}
-			if (next_inning) break;
-			start_player = 1;
+			if (out == 3)// 3 아웃되면 다음 이닝
+				break;
 		}
 	}
-	result = (score > result ? score : result);
+	result = max(score, result);
 }
 void backtracking(int cnt, int n) {
 	//가장 점수가 높게 나올 수 있는 타자 순서를 세우기 위한 순열
@@ -78,6 +72,9 @@ void backtracking(int cnt, int n) {
 	}
 }
 int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(NULL);
+
 	int n;//이닝 수n
 	cin >> n;
 	inning.assign(n + 1, vector<int>(MAX_PLAYER, 0));

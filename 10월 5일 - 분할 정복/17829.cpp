@@ -7,14 +7,14 @@ using namespace std;
 vector<vector<int>> x;
 
 int secondMax(int i, int j) {
-	int result[4];
-	result[0] = x[i][j];
-	result[1] = x[i + 1][j];
-	result[2] = x[i][j + 1];
-	result[3] = x[i + 1][j + 1];
+	vector<int> result;
+
+	for (int k = 0; k < 2; k++)
+		for (int l = 0; l < 2; l++)
+			result.push_back(x[i+k][j+l]);
 
 	//두 번째로 큰 수 구하기
-	sort(result, result + 4);
+	sort(result.begin(),result.end());
 	return  result[2];
 }
 void divide(int size) {
