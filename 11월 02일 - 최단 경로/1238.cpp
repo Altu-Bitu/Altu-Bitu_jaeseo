@@ -2,7 +2,6 @@
 #include<vector>
 #include<queue>
 using namespace std;
-				int dist = graph[i][k] + graph[k][j];//중간에 k를 거쳐서 i에서 j로 감
 
 typedef pair<int, int> ci;
 const int INF = 1e5; //최대 n-1개의 간선을 지나게 됨
