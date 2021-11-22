@@ -4,23 +4,18 @@ using namespace std;
 
 vector<vector<int>> tree;
 vector<int> treeNum;
-vector<bool> visited;
 
 //dfs
 int dfs(int root) {
 	if (treeNum[root])//해당 정점에, subtree있을 시
-		return treeNum[root];//연결된 subtree의 정점 개수 리턴
+		return 0;//더할 필요 없으니 0 리턴
 
 	//처음방문
-	visited[root] = true;
 	treeNum[root] = 1;//자신도 자신을 루트로 하는 서브트리에 포함되므로 1부터 시작
-	for (int i = 0; i < tree[root].size(); i++) {
-		int child = tree[root][i];//자식노드
-		if (!visited[child])//방문안했을 경우
-			treeNum[root] += dfs(child);
-	}
+	for (int i = 0; i < tree[root].size(); i++)
+		treeNum[root] += dfs(tree[root][i]);//자식노드로 들어감
 
-	return treeNum[root];
+	return treeNum[root];//현재까지 subtree 개수 리턴
 }
 
 int main() {
@@ -33,12 +28,10 @@ int main() {
 
 	//할당
 	tree.assign(n + 1, vector<int>());
-	visited.assign(n + 1, false);
 	treeNum.assign(n + 1, 0);
 
 	//tree생성
-	n--;
-	while (n--) {
+	while (n-- > 1) {
 		cin >> u >> v;
 		tree[u].push_back(v);
 		tree[v].push_back(u);

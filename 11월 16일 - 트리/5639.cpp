@@ -21,11 +21,9 @@ int main() {
 	int tree[SIZE];
 
 	//입력
-	while (true) {
-		cin >> input;
-		if (cin.eof()) break;
+	while (cin>>input)
 		tree[idx++] = input;
-	}
+	
 	//분할정복, 후위
 	post(tree, 0, idx);
 }

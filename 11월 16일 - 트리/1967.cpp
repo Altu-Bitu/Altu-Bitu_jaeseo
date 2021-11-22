@@ -3,7 +3,7 @@
 #include<vector>
 using namespace std;
 
-const int SIZE = 10000 + 1;
+const int SIZE = 1e5 + 1;
 vector<pair<int, int>> tree[SIZE];//first: 자식, second: 간선 가중치(길이)
 vector<bool> visited;
 int dia = 0, far = 0;//지름, 가장 멀리있는 점
