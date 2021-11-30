@@ -26,8 +26,9 @@ void unionInput(int x, int y) {
 	}
 }
 bool check(vector<int> plan) {
+	int fir = find(plan[0]);
 	for (int i = 1; i < plan.size(); i++)
-		if (find(plan[i - 1]) != find(plan[i]))//입력된 도시끼리 루트가 같은 지 확인
+		if (fir!= find(plan[i]))//입력된 도시들의 루트가 같은 지 확인
 			return false;
 
 	return true;

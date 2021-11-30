@@ -40,8 +40,10 @@ int cntParty() {
 		bool go = true;
 		for (int j = 0; j < party[i].size(); j++)
 			for (int k = 0; k < truth.size(); k++)
-				if (find(party[i][j]) == find(truth[k]))//진실을 아는 사람이 그 파티에 있을 경우
+				if (find(party[i][j]) == find(truth[k])) {//진실을 아는 사람이 그 파티에 있을 경우
 					go = false;
+					break;
+				}
 		if (go == true)
 			ans++;
 	}
@@ -53,7 +55,6 @@ int main() {
 
 	parent.assign(n + 1, -1);
 	truth.assign(t, 0);
-	party.assign(m, vector<int>(n, 0));
 
 	//진실을 아는 사람 입력
 	for (int i = 0; i < t; i++)
@@ -62,8 +63,10 @@ int main() {
 	//파티마다 오는 사람들 정보 입력
 	for (int i = 0; i < m; i++) {
 		cin >> num;
+		vector<int> temp(num,0);
 		for (int j = 0; j < num; j++)
-			cin >> party[i][j];
+			cin >> temp[j];
+		party.push_back(temp);
 	}
 
 	//연산
